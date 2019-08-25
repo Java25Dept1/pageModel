@@ -69,7 +69,8 @@ const commonMenu = {
                 purchaseReceipt: () => import('../views/purchaseMenu/purchaseOrder/Warehousing.vue'),
                 purchaseReturn: () => import('../views/purchaseMenu/purchaseOrder/ReturnGoods.vue'),
                 purchaseInvoice: () => import('../views/purchaseMenu/purchaseOrder/Invoice.vue'),
-                orderList: () => import('../views/purchaseMenu/purchaseOrder/OrderList.vue')
+                orderList: () => import('../views/purchaseMenu/purchaseOrder/OrderList.vue'),
+                purchasingList: () => import('../views/purchaseMenu/purchaseOrder/caigou.vue')
             },
             children:[
                 {
@@ -134,6 +135,15 @@ const commonMenu = {
                     meta: {
                         icon: "el-icon-document",
                         title: '采购发票',
+                        permission:""
+                    }
+                },
+                {
+                    path:"/purchasingList",
+                    name: "purchasingList",
+                    meta: {
+                        icon: "el-icon-tickets",
+                        title: "采购排行表",
                         permission:""
                     }
                 }

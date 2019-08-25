@@ -43,9 +43,9 @@ export default new Router({
             people: () => import('./views/commonMenu/basic/Personnel.vue'),
             // 物料资料
             warehouse: () => import('./views/commonMenu/material/Warehouse.vue'),
-            materialType: () => import('./views/commonMenu/material/Material.vue'),
+            materialType: () => import('./views/commonMenu/material/Materialclass.vue'),
             unit: () => import('./views/commonMenu/material/Measure.vue'),
-            materiaMaster: () => import('./views/commonMenu/material/Materialclass.vue'),
+            materiaMaster: () => import('./views/commonMenu/material/Material.vue'),
             // 往来资料
             customerType: () => import('./views/commonMenu/contact/Clientclass.vue'),
             prospectiveCustomer: () => import('./views/Form.vue'),
@@ -70,6 +70,10 @@ export default new Router({
             purchaseReturn: () => import('./views/purchaseMenu/purchaseOrder/ReturnGoods.vue'),
             purchaseInvoice: () => import('./views/purchaseMenu/purchaseOrder/Invoice.vue'),
             orderList: () => import('./views/purchaseMenu/purchaseOrder/OrderList.vue'),
+            purchasingList: () => import('./views/purchaseMenu/purchaseOrder/caigou.vue'),
+            //分摊作业
+            procurementAllocationOperation: () => import('./views/purchaseMenu/shareTheHomework/PurchaseShare.vue'),
+            purchaseShareDetails: () => import('./views/purchaseMenu/shareTheHomework/PurchaseShareDetails.vue'),
 
             //销售管理
             // 基本资料
@@ -81,6 +85,7 @@ export default new Router({
             salesReleaseOrder: () => import('./views/saleMenu/salesJob/chuku.vue'),
             salesReturn: () => import('./views/saleMenu/salesJob/tuihuo.vue'),
             saleInvoice: () => import('./views/saleMenu/salesJob/fapiao.vue'),
+            salesRanking: () => import('./views/saleMenu/salesJob/xiaoshou.vue'),
             // 金税接口
             exportOfSalesInvoice: () => import('./views/Form.vue'),
 
@@ -106,10 +111,10 @@ export default new Router({
             // 冲款作业
             advancePayments: () => import('./views/creditMenu/newWashingOperation/AdvanceCollection.vue'),
             collectAndChargeInAdvance: () => import('./views/creditMenu/newWashingOperation/AdvancechargeCollection.vue'),
-            accountsReceivableChargeSheet: () => import('./views/creditMenu/newWashingOperation/Collectionadvances.vue'),
+            // accountsReceivableChargeSheet: () => import('./views/creditMenu/newWashingOperation/Collectionadvances.vue'),
             advanceCharge: () => import('./views/creditMenu/newWashingOperation/Advancecharge.vue'),
             advanceChargePayable: () => import('./views/creditMenu/newWashingOperation/AdvancechargePayment.vue'),
-            payThePaymentSlip: () => import('./views/creditMenu/newWashingOperation/Paymentadvances.vue'),
+            // payThePaymentSlip: () => import('./views/creditMenu/newWashingOperation/Paymentadvances.vue'),
             // 其他应收付作业
             otherReceivables: () => import('./views/Form.vue'),
             otherNotesPayable: () => import('./views/Form.vue'),

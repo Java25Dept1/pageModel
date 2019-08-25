@@ -500,14 +500,11 @@
       <tbody>
         <tr>
           <td colspan="7" class="text-left">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link class="btn btn-info" :to="{ name: 'OrderList' }"
-              >明细</router-link
-            >
-             &nbsp;
-            <router-link class="btn btn-success" to="/OrderDesc/1">备注</router-link>
-            &nbsp;
-            <router-link class="btn btn-success" to="/OrderAccount/1">账款</router-link>
+           <el-tabs type="border-card">
+            <el-tab-pane label="明细"><OrderList></OrderList> </el-tab-pane>
+            <el-tab-pane label="备注"><OrderDesc></OrderDesc></el-tab-pane>
+            <el-tab-pane label="账款"><OrderAccount></OrderAccount></el-tab-pane>
+          </el-tabs>
           </td>
         </tr>
         <tr>
@@ -517,6 +514,7 @@
               v-bind:isupdate="isupdate"
               v-bind:tbBillno="pageInfo.list[0].tbBillno"
               v-bind:desc="pageInfo.list[0].tbRemark"
+              v-if="$route.meta.keepAlive"
             />
           </td>
         </tr>
@@ -716,9 +714,17 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import $ from "jquery";
+import OrderList from './OrderList.vue'
+import OrderDesc from './OrderDesc.vue'
+import OrderAccount from './OrderAccount.vue'
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    OrderList:OrderList,
+    OrderDesc:OrderDesc,
+    OrderAccount:OrderAccount
+
+  },
   data() {
     //这里存放数据
     return {

@@ -599,16 +599,12 @@
         <tr>
           <td colspan="7" class="text-left">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <router-link class="btn btn-info" :to="{ name: 'InvoiceList' }"
-              >内容</router-link
-            >
-             &nbsp;
-              <router-link class="btn btn-info" :to="{ name: 'InvoiceList2' }"
-              >清单</router-link
-            >&nbsp;
-            <router-link class="btn btn-success" to="/InvoiceDesc/1">备注</router-link>
-            &nbsp;
-            <router-link class="btn btn-success" to="/InvoiceAccount/1">账款</router-link>
+            <el-tabs type="border-card">
+            <el-tab-pane label="明细"><InvoiceList></InvoiceList> </el-tab-pane>
+            <el-tab-pane label="清单"><InvoiceList2></InvoiceList2></el-tab-pane>
+            <el-tab-pane label="备注"><InvoiceDesc></InvoiceDesc></el-tab-pane>
+            <el-tab-pane label="账款"><InvoiceAccount></InvoiceAccount></el-tab-pane>
+          </el-tabs>
           </td>
         </tr>
         <tr>
@@ -819,9 +815,18 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import $ from "jquery";
+import InvoiceList from "./InvoiceList.vue"
+import InvoiceDesc from "./InvoiceDesc.vue"
+import InvoiceList2 from "./InvoiceList2.vue"
+import InvoiceAccount from "./InvoiceAccount.vue"
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    InvoiceList:InvoiceList,
+    InvoiceDesc:InvoiceDesc,
+    InvoiceList2:InvoiceList2,
+    InvoiceAccount:InvoiceAccount,
+  },
   data() {
     //这里存放数据
     return {

@@ -1,9 +1,10 @@
 <template>
   <!-- 预付冲应付 -->
   <div>
+    <commonHead></commonHead>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span class="el-icon-star-on">应付冲款单(预付冲应付)</span>
+        <span class="el-icon-star-on">应付冲款单</span>
       </div>
       <!-- 头部表单 -->
       <div>
@@ -11,7 +12,7 @@
           :model="ruleForm"
           :rules="rules"
           ref="ruleForm"
-          label-width="110px"
+          label-width="130px"
           class="demo-ruleForm"
           :inline="true"
         >
@@ -39,7 +40,7 @@
             <el-col :span="12">
               <el-form-item label="结算方式一" prop="resource">
                 <el-input v-model="ruleForm.resource" style="width:225px"></el-input>
-                <el-input v-model="ruleForm.resource" style="width:125px" disabled></el-input>
+                <el-input v-model="ruleForm.resource" style="width:125px" ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -53,7 +54,7 @@
             <el-col :span="12">
               <el-form-item label="结算方式二" prop="delivery">
                 <el-input v-model="ruleForm.resource" style="width:225px"></el-input>
-                <el-input v-model="ruleForm.resource" style="width:125px" disabled></el-input>
+                <el-input v-model="ruleForm.resource" style="width:125px" ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -67,7 +68,7 @@
             <el-col :span="12">
               <el-form-item label="结算方式三" prop="delivery">
                 <el-input v-model="ruleForm.resource" style="width:225px"></el-input>
-                <el-input v-model="ruleForm.resource" style="width:125px" disabled></el-input>
+                <el-input v-model="ruleForm.resource" style="width:125px" ></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
@@ -87,7 +88,7 @@
                 <el-input
                   v-model="ruleForm.resource"
                   style="width:350px"
-                  placeholder="预付冲应付"
+                  placeholder="应付冲款"
                   disabled
                 ></el-input>
               </el-form-item>
@@ -227,7 +228,13 @@
 
 
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     return {
       ruleForm: {

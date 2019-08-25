@@ -291,8 +291,8 @@ export default {
   border-radius: 4px;
   min-height: 36px;
 }
-.el-header, .el-footer {
-    background-color: #B3C0D1;
+.el-header {
+    /* background-color: #B3C0D1; */
     color: #333;
     text-align: center;
     line-height: 60px;

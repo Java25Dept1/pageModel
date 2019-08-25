@@ -94,9 +94,9 @@ const commonMenu = {
             },
             components:{
                 warehouse: () => import('../views/commonMenu/material/Warehouse.vue'),
-                materialType: () => import('../views/commonMenu/material/Material.vue'),
+                materialType: () => import('../views/commonMenu/material/Materialclass.vue'),
                 unit: () => import('../views/commonMenu/material/Measure.vue'),
-                materiaMaster: () => import('../views/commonMenu/material/Materialclass.vue')
+                materiaMaster: () => import('../views/commonMenu/material/Material.vue')
             },
             children: [
                 {

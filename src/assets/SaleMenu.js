@@ -57,7 +57,8 @@ const saleMenu = {
                 saleOrder: () => import('../views/saleMenu/salesJob/Salesorder.vue'),
                 salesReleaseOrder: () => import('../views/saleMenu/salesJob/chuku.vue'),
                 salesReturn: () => import('../views/saleMenu/salesJob/tuihuo.vue'),
-                saleInvoice: () => import('../views/saleMenu/salesJob/fapiao.vue')
+                saleInvoice: () => import('../views/saleMenu/salesJob/fapiao.vue'),
+                salesRanking: () => import('../views/saleMenu/salesJob/xiaoshou.vue')
             },
             children:[
                 {
@@ -102,6 +103,15 @@ const saleMenu = {
                     meta: {
                         icon: "el-icon-s-order",
                         title: '销售发票',
+                        permission:""
+                    }
+                },
+                {
+                    path:"/salesRanking",
+                    name: "salesRanking",
+                    meta: {
+                        icon: "el-icon-tickets",
+                        title: "销售排行表",
                         permission:""
                     }
                 }

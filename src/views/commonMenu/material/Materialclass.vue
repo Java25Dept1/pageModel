@@ -1,6 +1,7 @@
 <!-- <h1>物料类别设定</h1> -->
 <template>
-    <div style=" border: 1px solid #C0C4CC;">
+    <div>
+    <commonHead></commonHead>
     <h3>物料类别设定</h3>
 <el-form :label-position="labelPosition" label-width="120px"  :model="formLabelAlign" size="mini">
        <el-row :gutter="20">
@@ -553,7 +554,13 @@
    }
 </style>
 <script>
-  export default {
+import commonHead from "../../../components/CommonHead.vue";
+
+export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
     data() {
       return {
         dialogFormVisible: false,

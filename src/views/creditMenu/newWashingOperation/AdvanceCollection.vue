@@ -1,9 +1,10 @@
 <template>
   <!-- 预付款 -->
   <div>
+    <commonHead></commonHead>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
-        <span class="el-icon-star-on">应收冲款单(预收款)</span>
+        <span class="el-icon-star-on">预收款单</span>
       </div>
       <!-- 头部表单 -->
       <div>
@@ -11,7 +12,7 @@
           :model="ruleForm"
           :rules="rules"
           ref="ruleForm"
-          label-width="110px"
+          label-width="130px"
           class="demo-ruleForm"
           :inline="true"
         >
@@ -177,7 +178,13 @@
 
 
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     return {
       ruleForm: {

@@ -21,10 +21,10 @@ const commonMenu = {
             components:{
                 advancePayments: () => import('../views/creditMenu/newWashingOperation/AdvanceCollection.vue'),
                 collectAndChargeInAdvance: () => import('../views/creditMenu/newWashingOperation/AdvancechargeCollection.vue'),
-                accountsReceivableChargeSheet: () => import('../views/creditMenu/newWashingOperation/Collectionadvances.vue'),
+                // accountsReceivableChargeSheet: () => import('../views/creditMenu/newWashingOperation/Collectionadvances.vue'),
                 advanceCharge: () => import('../views/creditMenu/newWashingOperation/Advancecharge.vue'),
-                advanceChargePayable: () => import('../views/creditMenu/newWashingOperation/AdvancechargePayment.vue'),
-                payThePaymentSlip: () => import('../views/creditMenu/newWashingOperation/Paymentadvances.vue')
+                advanceChargePayable: () => import('../views/creditMenu/newWashingOperation/AdvancechargePayment.vue')
+                // payThePaymentSlip: () => import('../views/creditMenu/newWashingOperation/Paymentadvances.vue')
             },
             children:[
                 {
@@ -41,19 +41,19 @@ const commonMenu = {
                     name: "collectAndChargeInAdvance",
                     meta: {
                         icon: "el-icon-upload2",
-                        title: '预收冲应收',
+                        title: '应收冲款单',
                         permission:""
                     }
                 },
-                {
-                    path:"/accountsReceivableChargeSheet",
-                    name: "accountsReceivableChargeSheet",
-                    meta: {
-                        icon: "el-icon-download",
-                        title: "应收冲款单",
-                        permission:""
-                    }
-                },
+                // {
+                //     path:"/accountsReceivableChargeSheet",
+                //     name: "accountsReceivableChargeSheet",
+                //     meta: {
+                //         icon: "el-icon-download",
+                //         title: "应收冲款单",
+                //         permission:""
+                //     }
+                // },
                 {
                     path:"/advanceCharge",
                     name: "advanceCharge",
@@ -68,19 +68,19 @@ const commonMenu = {
                     name: "advanceChargePayable",
                     meta: {
                         icon: "el-icon-upload2",
-                        title: '预付冲应付',
-                        permission:""
-                    }
-                },
-                {
-                    path:"/payThePaymentSlip",
-                    name: "payThePaymentSlip",
-                    meta: {
-                        icon: "el-icon-upload2",
                         title: '应付冲款单',
                         permission:""
                     }
                 }
+                // {
+                //     path:"/payThePaymentSlip",
+                //     name: "payThePaymentSlip",
+                //     meta: {
+                //         icon: "el-icon-upload2",
+                //         title: '应付冲款单',
+                //         permission:""
+                //     }
+                // }
             ]
         },
         // 其他应收付作业

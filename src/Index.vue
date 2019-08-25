@@ -2,7 +2,7 @@
   <div class>
     <el-container height="100vh">
         <!-- 头部 -->
-        <el-header height="15%">
+        <el-header height="15%" >
             <el-row>
                 <el-col :span="12">
                     <div>
@@ -233,7 +233,10 @@ export default {
 </script>
 <style scoped>
 /*@import url(); 引入公共css类*/
-
+.el-header{
+    background-color:white;
+    margin-top: 10px;
+}
 .el-avatar{
     float: left;
     margin-left: 40px;

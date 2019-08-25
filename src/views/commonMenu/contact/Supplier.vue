@@ -1,6 +1,7 @@
 <!-- <h1>供应商主文件设定</h1> -->
 <template>
-  <div style=" border: 1px solid #C0C4CC">
+  <div>
+    <commonHead></commonHead>
     <h3>供应商主文件设定</h3>
     <el-form
       :label-position="labelPosition"
@@ -28,6 +29,8 @@
             <el-input v-model="input" style="position: relative;left: -45px;width: 112%;"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="供应商全称">
             <el-input v-model="input"></el-input>
@@ -47,6 +50,8 @@
             <el-input v-model="input" style="position: relative;left: -45px;width: 112%;"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="供应商简称">
             <el-input v-model="input"></el-input>
@@ -66,6 +71,8 @@
             <el-input v-model="input" style="position: relative;left: -45px;width: 112%;"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="英文全称">
             <el-input v-model="input"></el-input>
@@ -85,6 +92,8 @@
             <el-input v-model="input" style="position: relative;left: -45px;width: 112%;"></el-input>
           </el-form-item>
         </el-col>
+      </el-row>
+      <el-row :gutter="20">
         <el-col :span="12">
           <el-form-item label="英文简称">
             <el-input v-model="input"></el-input>
@@ -114,6 +123,8 @@
                 <el-input v-model="input" style="position: relative;left: -45px;width: 112%;"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="联系人">
                 <el-input v-model="input"></el-input>
@@ -124,6 +135,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="联系电话一">
                 <el-input v-model="input"></el-input>
@@ -134,6 +147,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="联系电话二">
                 <el-input v-model="input"></el-input>
@@ -144,6 +159,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="联系电话三">
                 <el-input v-model="input"></el-input>
@@ -154,6 +171,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="移动电话">
                 <el-input v-model="input"></el-input>
@@ -164,6 +183,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="12">
               <el-form-item label="银行账号">
                 <el-input v-model="input"></el-input>
@@ -174,6 +195,8 @@
                 <el-input v-model="input"></el-input>
               </el-form-item>
             </el-col>
+      </el-row>
+      <el-row :gutter="20">
             <el-col :span="1">
               <el-form-item>
                 <el-button
@@ -1124,9 +1147,19 @@
 h3 {
   text-align: center;
 }
+
+.el-row {
+    margin-bottom: 0px;
+}
 </style>
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+   //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     return {
       dialogFormVisible: false,

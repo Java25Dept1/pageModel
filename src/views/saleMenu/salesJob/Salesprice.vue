@@ -247,14 +247,14 @@ export default {
   background: #99a9bf;
 } */
 .bg-purple {
-  background: #d3dce6;
+  /* background: #d3dce6; */
 }
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
 }
 .el-header {
-    background-color: #B3C0D1;
+    /* background-color: #B3C0D1; */
     color: #333;
     text-align: center;
     line-height: 60px;
