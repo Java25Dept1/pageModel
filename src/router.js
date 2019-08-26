@@ -36,6 +36,8 @@ export default new Router({
             // 公共资料
             // 基本资料
             dept: () => import('./views/commonMenu/basic/Department.vue'),
+            region: () => import('./views/commonMenu/basic/Region.vue'),
+            currency: () => import('./views/commonMenu/basic/Currency.vue'),
             // program: () => import('../views/Form1.vue'),
             // area: () => import('../views/Form2.vue'),
             // tax: () => import('../views/Form.vue'),

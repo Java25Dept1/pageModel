@@ -20,6 +20,8 @@ const commonMenu = {
             },
             components:{
                 dept: () => import('../views/commonMenu/basic/Department.vue'),
+                region: () => import('../views/commonMenu/basic/Region.vue'),
+                currency: () => import('../views/commonMenu/basic/Currency.vue'),
                 // program: () => import('../views/Form1.vue'),
                 // area: () => import('../views/Form2.vue'),
                 // tax: () => import('../views/Form.vue'),
@@ -46,11 +48,20 @@ const commonMenu = {
                     }
                 },
                 {
-                    path: "/area",
-                    name: "area",
+                    path: "/region",
+                    name: "region",
                     meta: {
                         icon: "el-icon-setting",
                         title: '地区设定',
+                        permission: ""
+                    }
+                },
+                {
+                    path: "/currency",
+                    name: "currency",
+                    meta: {
+                        icon: "el-icon-setting",
+                        title: '币别设定',
                         permission: ""
                     }
                 },
