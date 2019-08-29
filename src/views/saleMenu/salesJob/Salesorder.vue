@@ -291,7 +291,7 @@ export default {
   /* background: #99a9bf; */
 /* } */
 .bg-purple {
-  background: #d3dce6;
+  /* background: #d3dce6; */
 }
 .grid-content {
   border-radius: 4px;
@@ -300,7 +300,7 @@ export default {
 /* .el-footer*/
 .el-header { 
   /* background-color: #b3c0d1; */
-  color: #333;
+  /* color: #333; */
   text-align: center;
   line-height: 60px;
 }

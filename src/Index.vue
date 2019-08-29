@@ -164,7 +164,7 @@ export default {
                     num++;
                 }
             })
-           this.editableTabsValue = targetName;
+            this.editableTabsValue = targetName;
             if(num > 0){
                 //this.editableTabsValue = targetName;
                 return;
