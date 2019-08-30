@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="div" width="100%">
     <commonHead></commonHead>
     <el-row :gutter="20">
@@ -39,12 +38,11 @@
               ></el-input>
             </div>
           </el-col>
-=======
+
     <div class="div">
       <commonHead></commonHead>
         <el-row :gutter="20">
             <el-col :span="24"><h2 style="color:#666666;">调价单</h2></el-col>
->>>>>>> e153cc1aa665f4791377dfd917b95331028783bc
         </el-row>
         <el-row class="border">
             <el-row styel="background-color:#FCFDFD;">
@@ -213,7 +211,6 @@ export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
     commonHead
-<<<<<<< HEAD
   },
   data() {
     //这里存放数据
@@ -261,8 +258,6 @@ export default {
       dialogTableVisible1: false,
       dialogTableVisible2: false
     };
-=======
->>>>>>> e153cc1aa665f4791377dfd917b95331028783bc
   },
 data() {
 //这里存放数据
