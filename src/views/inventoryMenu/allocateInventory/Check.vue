@@ -1,5 +1,6 @@
 <template>
   <div class="div">
+    <commonHead></commonHead>
     <el-row :gutter="20">
       <el-col :span="24">
         <h2 style="color:#666666;">期末盘点</h2>
@@ -316,7 +317,13 @@
 </template>
 
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     //这里存放数据
     return {
@@ -461,7 +468,42 @@ export default {
           emptransfer.removeClass(_cellNode, "current-cell2");
         }
       }, 200);
-    }
+    },
+      getStockOrder(index){
+        if(index == 1){
+          //第一页
+          alert("1")
+        }else if(index == 2){
+          //上一页
+          alert("2")
+
+        }else if(index == 3){
+          //下一页
+          alert("3")
+
+        }else if(index == 4){
+          //最后一页
+          alert("4")
+
+        }else if(index == 5){
+          //添加
+          alert("5")
+
+        }else if(index == 6){
+          //修改
+          alert("6")
+
+        }else if(index == 7){
+          //保存
+          alert("保7存")
+
+        }else if(index == 8){
+          //删除
+          alert("8")
+
+        }
+      }
+    
   },
   //挂载完成（可以访问DOM元素）
   mounted() {}

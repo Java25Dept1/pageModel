@@ -173,9 +173,9 @@ return {
 //计算属性
 computed: {},
 //方法集合
-methods: {
-  
-},
+
+    methods:{
+    },
 //挂载完成（可以访问DOM元素）
 mounted() {
 

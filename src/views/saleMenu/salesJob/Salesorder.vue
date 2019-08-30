@@ -1,5 +1,6 @@
 <template>
 <div >
+    <commonHead></commonHead>
     <el-container >
       <el-header style="height:10%">销售订单</el-header>
       <el-main style="height:80%">
@@ -207,7 +208,13 @@
 </div>
 </template>
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     return {
       radio: "1",
@@ -276,7 +283,41 @@ export default {
     },
     alter(){
       alert(JSON.stringify(this.tableData));
-    }
+    },
+    getStockOrder(index){
+        if(index == 1){
+          //第一页
+          alert("1")
+        }else if(index == 2){
+          //上一页
+          alert("2")
+
+        }else if(index == 3){
+          //下一页
+          alert("3")
+
+        }else if(index == 4){
+          //最后一页
+          alert("4")
+
+        }else if(index == 5){
+          //添加
+          alert("5")
+
+        }else if(index == 6){
+          //修改
+          alert("6")
+
+        }else if(index == 7){
+          //保存
+          alert("保7存")
+
+        }else if(index == 8){
+          //删除
+          alert("8")
+
+        }
+      }
   }
 };
 </script>
@@ -291,7 +332,7 @@ export default {
   /* background: #99a9bf; */
 /* } */
 .bg-purple {
-  background: #d3dce6;
+  /* background: #d3dce6; */
 }
 .grid-content {
   border-radius: 4px;
@@ -300,7 +341,7 @@ export default {
 /* .el-footer*/
 .el-header { 
   /* background-color: #b3c0d1; */
-  color: #333;
+  /* color: #333; */
   text-align: center;
   line-height: 60px;
 }

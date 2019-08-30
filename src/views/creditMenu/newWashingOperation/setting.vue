@@ -90,6 +90,7 @@ export default {
       //  alert(_this.input1)
       // $("[name=input1]").val();
     }
+    
   }
 };
 </script>
