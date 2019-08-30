@@ -7,8 +7,8 @@
        <el-row :gutter="20">
            <el-col :span="12">  
                <el-form-item label="客户">
-                   <el-input v-model="user"></el-input>
-                   </el-form-item>
+                   <el-input v-model="cliid"></el-input>
+               </el-form-item>
             </el-col>
             <el-col :span="12">  
                <el-form-item label="单据日期">
@@ -53,10 +53,8 @@
                  <el-form-item label="仓库">
                     <el-input v-model="input"></el-input>
                     </el-form-item>
-            </el-col>
-            
-        
-              <el-col :span="12">  
+            </el-col>  
+            <el-col :span="12">  
                <el-form-item label="国外贸易">
                     <el-select v-model="grouping" placeholder="" style="width:100%;">
                          <el-option label="是" value="8"></el-option>
@@ -149,9 +147,9 @@
             </el-col>
              
             <el-col :span="12">  
-               <el-form-item label="收款日期">
+                <el-form-item label="收款日期">
                    <el-date-picker type="date" v-model="data" placeholder="选择日期" style="width: 100%;"></el-date-picker>
-                   </el-form-item>
+                </el-form-item>
             </el-col>
              <el-col :span="12">  
                <el-form-item label="收款条件">
@@ -267,7 +265,8 @@ export default {
   },
     data() {
       return {
-          user:"",
+          pageInfo:{},
+          cliid:"",
           input:"",
           marriage:"",
           grouping:"",
@@ -288,39 +287,25 @@ export default {
           zip: true
         }]
       }
-    },methods: {
-      handleClick(row) {
-        console.log(row);
-      },handleSelectionChange (val) {
-        console.log(val)
-      },getSummaries(param) {
-        const { columns, data } = param;
-        const sums = [];
-        columns.forEach((column, index) => {
-          if (index === 0) {
-            sums[index] = '   合计：';
-            return;
-          }
-          //通过下标定义要统计的列，下标从1开始
-          if(index == 5||index == 9||index == 11||index == 12){
-            const values = data.map(item => Number(item[column.property]));
-              sums[index] = values.reduce((prev, curr) => {
-                const value = Number(curr);
-                if (!isNaN(value)) {
-                  return prev + curr;
-                } else {
-                  return prev;
-                }
-              }, 0);
-          }
-        });
-        return sums;
-      },deleteRow(index, rows) {
-        if(confirm("是否删除")){
-          rows.splice(index, 1);
-        }
-      },
-      getStockOrder(index){
+    },
+    methods: {
+      /**分页渲染数据 */
+      goToPrePage() {
+            this.goToPage(this.pageInfo.prePage,this.pageInfo.pageSize);
+        },
+        goToNextPage() {
+            this.goToPage(this.pageInfo.nextPage,this.pageInfo.pageSize);
+        },
+        goToPage(p, s) {
+            let _this = this;
+            //ajax
+            _this.$axios.get(`http://localhost:8080/Xiaoshou/query/${p}/${s}/${billId}`).then(resp => {
+                _this.pageInfo = resp.data;
+            }).catch(e => {
+                alert(e);
+            });
+        },
+         getStockOrder(index){
         if(index == 1){
           //第一页
           alert("1")
@@ -354,8 +339,51 @@ export default {
 
         }
       }
+        
+    },
+          //挂载完成（可以访问DOM元素）
+    mounted() {
+        this.goToPage(1, 3);
+    },
+     watch: {
+        '$route'(to,from){
+             this.goToPage(1, 3);
+        }
+    },
+      /////////////
+      handleClick(row) {
+        console.log(row);
+      },handleSelectionChange (val) {
+        console.log(val)
+      },getSummaries(param) {
+        const { columns, data } = param;
+        const sums = [];
+        columns.forEach((column, index) => {
+          if (index === 0) {
+            sums[index] = '   合计：';
+            return;
+          }
+          //通过下标定义要统计的列，下标从1开始
+          if(index == 5||index == 9||index == 11||index == 12){
+            const values = data.map(item => Number(item[column.property]));
+              sums[index] = values.reduce((prev, curr) => {
+                const value = Number(curr);
+                if (!isNaN(value)) {
+                  return prev + curr;
+                } else {
+                  return prev;
+                }
+              }, 0);
+          }
+        });
+        return sums;
+      },deleteRow(index, rows) {
+        if(confirm("是否删除")){
+          rows.splice(index, 1);
+        }
+      }
+     
     
-    }
   }
 </script>
 <style>
