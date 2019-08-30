@@ -1,7 +1,7 @@
 <!-- <h1>供应商主文件设定</h1> -->
 <template>
   <div>
-    <commonHead></commonHead>
+    <commonHead ref="mychild"></commonHead>
     <h3>供应商主文件设定</h3>
     <el-form
       :label-position="labelPosition"
@@ -1154,8 +1154,9 @@ h3 {
 </style>
 <script>
 import commonHead from "../../../components/CommonHead.vue";
-
-export default {
+import $ from 'jquery'
+  
+  export default {
    //import引入的组件需要注入到对象中才能使用
   components: {
     commonHead
@@ -1191,6 +1192,43 @@ export default {
         }
       ]
     };
+  },
+  methods:{
+    getStockOrder(index){
+      if(index == 1){
+        //第一页
+        alert("第一页")
+      }else if(index == 2){
+        //上一页
+        alert("上一页")
+
+      }else if(index == 3){
+        //下一页
+        alert("下一页")
+
+      }else if(index == 4){
+        //最后一页
+        alert("最后一页")
+
+      }else if(index == 5){
+        //添加
+        alert("添加")
+
+      }else if(index == 6){
+        //修改
+        alert("修改")
+
+      }else if(index == 7){
+        //保存
+        alert("保存")
+
+      }else if(index == 8){
+        //删除
+        alert("删除")
+
+      }
+    }
+
   }
 };
 </script>

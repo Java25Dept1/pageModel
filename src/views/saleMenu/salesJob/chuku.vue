@@ -1,13 +1,14 @@
 <!-- <h1>销售出库页面</h1> -->
 <template>
     <div>
+    <commonHead></commonHead>
        <h3>销售出库单</h3>
        <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" size="mini">
        <el-row :gutter="20">
            <el-col :span="12">  
                <el-form-item label="客户">
-                   <el-input v-model="user"></el-input>
-                   </el-form-item>
+                   <el-input v-model="cliid"></el-input>
+               </el-form-item>
             </el-col>
             <el-col :span="12">  
                <el-form-item label="单据日期">
@@ -52,10 +53,8 @@
                  <el-form-item label="仓库">
                     <el-input v-model="input"></el-input>
                     </el-form-item>
-            </el-col>
-            
-        
-              <el-col :span="12">  
+            </el-col>  
+            <el-col :span="12">  
                <el-form-item label="国外贸易">
                     <el-select v-model="grouping" placeholder="" style="width:100%;">
                          <el-option label="是" value="8"></el-option>
@@ -148,9 +147,9 @@
             </el-col>
              
             <el-col :span="12">  
-               <el-form-item label="收款日期">
+                <el-form-item label="收款日期">
                    <el-date-picker type="date" v-model="data" placeholder="选择日期" style="width: 100%;"></el-date-picker>
-                   </el-form-item>
+                </el-form-item>
             </el-col>
              <el-col :span="12">  
                <el-form-item label="收款条件">
@@ -257,10 +256,17 @@
    }
 </style>
 <script>
-  export default {
+import commonHead from "../../../components/CommonHead.vue";
+
+export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
     data() {
       return {
-          user:"",
+          pageInfo:{},
+          cliid:"",
           input:"",
           marriage:"",
           grouping:"",
@@ -281,7 +287,34 @@
           zip: true
         }]
       }
-    },methods: {
+    },
+    methods: {
+      /**分页渲染数据 */
+      goToPrePage() {
+            this.goToPage(this.pageInfo.prePage,this.pageInfo.pageSize);
+        },
+        goToNextPage() {
+            this.goToPage(this.pageInfo.nextPage,this.pageInfo.pageSize);
+        },
+        goToPage(p, s) {
+            let _this = this;
+            //ajax
+            _this.$axios.get(`http://localhost:8080/Xiaoshou/query/${p}/${s}/${billId}`).then(resp => {
+                _this.pageInfo = resp.data;
+            }).catch(e => {
+                alert(e);
+            });
+        },
+          //挂载完成（可以访问DOM元素）
+    mounted() {
+        this.goToPage(1, 3);
+    },
+     watch: {
+        '$route'(to,from){
+             this.goToPage(1, 3);
+        }
+    },
+      /////////////
       handleClick(row) {
         console.log(row);
       },handleSelectionChange (val) {
@@ -311,6 +344,40 @@
       },deleteRow(index, rows) {
         if(confirm("是否删除")){
           rows.splice(index, 1);
+        }
+      },
+      getStockOrder(index){
+        if(index == 1){
+          //第一页
+          alert("1")
+        }else if(index == 2){
+          //上一页
+          alert("2")
+
+        }else if(index == 3){
+          //下一页
+          alert("3")
+
+        }else if(index == 4){
+          //最后一页
+          alert("4")
+
+        }else if(index == 5){
+          //添加
+          alert("5")
+
+        }else if(index == 6){
+          //修改
+          alert("6")
+
+        }else if(index == 7){
+          //保存
+          alert("保7存")
+
+        }else if(index == 8){
+          //删除
+          alert("8")
+
         }
       }
     

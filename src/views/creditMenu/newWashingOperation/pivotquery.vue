@@ -179,7 +179,9 @@ export default {
       jcinputB: "",
       inputD: ""
     };
-  }
+  },
+    methods:{
+    }
 };
 </script>
 <style>
