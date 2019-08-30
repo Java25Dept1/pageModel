@@ -15,7 +15,7 @@
             <div>
               <span>制单日期*：</span>
               <el-date-picker
-                v-model="value2"
+                v-model="movedate"
                 align="right"
                 size="mini"
                 style="width:350px;"
@@ -29,7 +29,7 @@
             <div style="color:#919191;">
               <span>单据编号：</span>
               <el-input
-                v-model="input"
+                v-model="moveorderno"
                 :disabled="true"
                 size="mini"
                 style="width:350px;"
@@ -44,7 +44,7 @@
               <span>增值科目*：</span>
               <el-input
                 @focus="dialogTableVisible1 = true"
-                v-model="input1"
+                v-model="input2"
                 size="mini"
                 style="width:350px;"
               ></el-input>
@@ -88,7 +88,7 @@
         <el-col :span="24">
           <el-table
             ref="singleTable"
-            :data="tableData"
+            :data="pageInfo.list.details"
             highlight-current-row
             @current-change="handleCurrentChange"
             style="width: 100%,"
@@ -104,32 +104,32 @@
                     size="mini"
                     @blur="dis()"
                     v-if="editable[$index]"
-                    v-model="row.name"
+                    v-model="row.movematerielno"
                   ></el-input>
-                  <span v-else v-text="row.name"></span>
+                  <span v-else v-text="row.movematerielno"></span>
                 </div>
               </template>
             </el-table-column>
             <el-table-column
-              prop="date"
+              prop="row.movematerielname"
               width="160px"
               label="物品名称"
               class-name="column-bg-color-editable"
               show-overflow-tooltip
             ></el-table-column>
-            <el-table-column type="index" width="150px" label="规格"></el-table-column>
-            <el-table-column type="index" width="150px" label="单位"></el-table-column>
-            <el-table-column type="index" width="150px" label="库存数量"></el-table-column>
-            <el-table-column type="index" width="150px" label="平均成本"></el-table-column>
-            <el-table-column type="index" width="150px" label="单价*">
+            <el-table-column type="row.movespectype" width="150px" label="规格"></el-table-column>
+            <el-table-column type="row.moveunit" width="150px" label="单位"></el-table-column>
+            <el-table-column type="row.movestocks" width="150px" label="库存数量"></el-table-column>
+            <el-table-column type="row.moveaveragecost" width="150px" label="平均成本"></el-table-column>
+            <el-table-column type="row.moveprice" width="150px" label="单价*">
               <template slot-scope="{row,$index}">
                 <div @click="{{changeNum1($index)}}">
-                  <el-input @blur="dis1()" size="mini" v-if="editable1[$index]" v-model="row.date"></el-input>
-                  <span v-else v-text="row.date"></span>
+                  <el-input @blur="dis1()" size="mini" v-if="editable1[$index]" v-model="row.moveprice"></el-input>
+                  <span v-else v-text="row.moveprice"></span>
                 </div>
               </template>
             </el-table-column>
-            <el-table-column type="index" width="150px" label="调价金额"></el-table-column>
+            <el-table-column type="row.movemoveprice" width="150px" label="调价金额"></el-table-column>
             <el-table-column type="index" width="150px" label="分录备注*"></el-table-column>
           </el-table>
         </el-col>
@@ -139,20 +139,20 @@
             <span>备注：</span>
           </el-col>
           <el-col :span="21">
-            <el-input type="textarea" :rows="3" v-model="textarea"></el-input>
+            <el-input type="textarea" :rows="3" v-model="moveremark"></el-input>
         </el-col>
       </el-row>
       <el-row style="margin:5px 0px;font-size:14px;">
           <el-col :span="12">
             <div>
               <span>制单人：</span>
-              <el-input v-model="input9" size="mini" style="width:350px;" placeholder="请输入内容"></el-input>
+              <el-input v-model="movemake" size="mini" style="width:350px;" placeholder="请输入内容"></el-input>
             </div>
           </el-col>
           <el-col :span="12">
             <div>
               <span>复核人：</span>
-              <el-input v-model="input9" size="mini" style="width:350px;" placeholder="请输入内容"></el-input>
+              <el-input v-model="movecheck" size="mini" style="width:350px;" placeholder="请输入内容"></el-input>
             </div>
           </el-col>
         </el-row>
@@ -223,43 +223,20 @@ export default {
   data() {
     //这里存放数据
     return {
-      input: "",
+      pageInfo:{},
       input1: "",
       input2: "",
-      input3: "",
-      input4: "",
-      input5: "",
-      input6: "",
-      input7: "",
-      input8: "",
-      input9: "",
-      input10: "",
-      value2: "",
-      value3: "1",
-      value: "",
       fileList: [],
-      tableData: [
-        {
-          date: "",
-          name: "",
-          address: ""
-        },
-        {
-          date: "",
-          name: "",
-          address: ""
-        },
-        {
-          date: "",
-          name: "",
-          address: ""
-        },
-        {
-          date: "",
-          name: "",
-          address: ""
-        }
-      ],
+      tableData: [{movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",
+      movematerielno:"",}],
       currentRow: null,
       editable: [],
       editable1: [],
@@ -374,10 +351,36 @@ export default {
           emptransfer.removeClass(_cellNode, "current-cell2");
         }
       }, 200);
+    },
+    goToPrePage() {
+      if(this.text!=""){
+        this.query(this.pageInfo.prePage,this.pageInfo.pageSize);
+      }else{
+        this.goToPage(this.pageInfo.prePage,this.pageInfo.pageSize);
+      }
+    },
+    goToNextPage() {
+      if(this.text!=""){
+        this.query(this.pageInfo.nextPage,this.pageInfo.pageSize);
+      }else{
+        this.goToPage(this.pageInfo.nextPage,this.pageInfo.pageSize);
+      }
+    },
+    goToPage(p) {
+          let _this = this;
+          //ajax
+          _this.$axios.get(`http://127.0.0.1:8080/MovePrice/selectMovePrice?pageNum=`+p).then(resp => {
+              _this.pageInfo = resp.data;
+              alert(JSON.stringify(resp.data))
+          }).catch(e => {
+              alert(e);
+          });
     }
   },
   //挂载完成（可以访问DOM元素）
-  mounted() {}
+  mounted() {
+    this.goToPage(1)
+  }
 };
 </script>
 <style  scoped>
