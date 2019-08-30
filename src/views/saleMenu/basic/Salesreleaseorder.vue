@@ -1,5 +1,6 @@
 <template>
   <div >
+    <commonHead></commonHead>
     <el-container >
       <el-header style="backgrand:red">销售出库单</el-header>
       <el-main>
@@ -230,7 +231,13 @@
   </div>
 </template>
 <script>
+import commonHead from "../../../components/CommonHead.vue";
+
 export default {
+  //import引入的组件需要注入到对象中才能使用
+  components: {
+    commonHead
+  },
   data() {
     return {
       radio: "1",

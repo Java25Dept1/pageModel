@@ -248,7 +248,6 @@ export default {
       this.$refs[formName].resetFields();
     },
     
-    methods:{
       getStockOrder(index){
         if(index == 1){
           //第一页
@@ -282,7 +281,7 @@ export default {
           alert("8")
 
         }
-      }
+      
     
   }
 };
