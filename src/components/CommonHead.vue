@@ -9,40 +9,34 @@
       />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
-        value="下一条"
+        value="上一条"
         readonly="true"
-        @click="
-            getStockOrder(
-              pageInfo.hasNextPage ? pageInfo.nextPage : pageInfo.pages
-            )
-          "
+        @click="getStockOrder(2)"
       />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
-        value="上一条"
+        value="下一条"
         readonly="true"
-        @click="
-            getStockOrder(pageInfo.hasPreviousPage ? pageInfo.prePage : 1)
-          "
+        @click="getStockOrder(3)"
       />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
         value="最后一条"
         readonly="true"
-        @click="getStockOrder(pageInfo.pages)"
+        @click="getStockOrder(4)"
       />
-      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" value="添加" disabled="true" />
+      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" @click="getStockOrder(5)" value="添加" disabled="true" />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
         value="修改"
-        @click="update"
+        @click="getStockOrder(6)"
         readonly="true"
       />
-      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" value="保存" readonly="true" />
+      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" @click="getStockOrder(7)" value="保存" readonly="true" />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
         value="删除"
-        @click="deleteStockOrder"
+        @click="getStockOrder(8)"
         readonly="true"
       />
     </div>
@@ -68,7 +62,9 @@ computed: {},
 watch: {},
 //方法集合
 methods: {
-
+  getStockOrder(o){
+    this.$parent.getStockOrder(o)
+  }
 },
 //生命周期 - 创建完成（可以访问当前this实例）
 created() {

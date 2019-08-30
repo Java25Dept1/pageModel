@@ -255,6 +255,40 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     }
+  },
+  getStockOrder(index){
+    if(index == 1){
+      //第一页
+      alert("1")
+    }else if(index == 2){
+      //上一页
+      alert("2")
+
+    }else if(index == 3){
+      //下一页
+      alert("3")
+
+    }else if(index == 4){
+      //最后一页
+      alert("4")
+
+    }else if(index == 5){
+      //添加
+      alert("5")
+
+    }else if(index == 6){
+      //修改
+      alert("6")
+
+    }else if(index == 7){
+      //保存
+      alert("保7存")
+
+    }else if(index == 8){
+      //删除
+      alert("8")
+
+    }
   }
 };
 </script>

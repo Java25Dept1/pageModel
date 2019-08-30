@@ -252,6 +252,7 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
     }
+    
   },
   //挂载完成（可以访问DOM元素）
   mounted() {}
