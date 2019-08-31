@@ -25,7 +25,7 @@
         readonly="true"
         @click="getStockOrder(4)"
       />
-      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" @click="getStockOrder(5)" value="添加" disabled="true" />
+      <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default" @click="getStockOrder(5)" value="添加" readonly="true" />
       <input
         class="col-lg-1 col-md-1 col-sm-1 col-xs-1 btn btn-default"
         value="修改"

@@ -73,7 +73,11 @@
                       <el-table-column prop="adeexesname" label="(费用名称)"></el-table-column>
                       <el-table-column prop="adcurrency" label="币别"></el-table-column>
                       <el-table-column prop="adstandardcurrency" label="汇率"></el-table-column>
-                      <el-table-column prop="adeamtmoney" label="金额"></el-table-column>
+                      <el-table-column prop="adeamtmoney" label="金额">
+                        <template slot-scope="temp">
+                          <el-input v-model="temp.row.adeamtmoney" ></el-input>
+                        </template>
+                      </el-table-column>
                       <el-table-column prop="adstandardcurrency" label="(金额本位币)"></el-table-column>
                     </el-table>
                   </template>
@@ -82,13 +86,21 @@
                   <template>
                     <el-table :data="i.result" height="250" border style="width: 100%">
                       <el-table-column type="index" label="(栏号)" width="70"></el-table-column>
-                      <el-table-column prop="storageid" label="采购入库单号"></el-table-column>
-                      <el-table-column prop="matid" label="物料编号"></el-table-column>
+                      <el-table-column prop="storageid" label="采购入库单号">
+                          <template slot-scope="temp">
+                            <el-input v-model="temp.row.storageid" ></el-input>
+                          </template>
+                      </el-table-column>
+                      <el-table-column prop="matid" label="物料编号">
+                          <template slot-scope="temp">
+                            <el-input v-model="temp.row.matid" ></el-input>
+                          </template>
+                      </el-table-column>
                       <el-table-column prop="matname" label="(物料名称)"></el-table-column>
                       <el-table-column prop="matspec" label="(规格型号)"></el-table-column>
                       <el-table-column prop="stockprice" label="(采购金额)"></el-table-column>
                       <el-table-column prop="atinum" label="(数量)"></el-table-column>
-                      <el-table-column prop="ademoney" label="(分担金额)"></el-table-column>
+                      <el-table-column prop="ademoney" label="(分摊金额)"></el-table-column>
                     </el-table>
                   </template>
                 </el-tab-pane>
@@ -118,12 +130,6 @@
                 </el-dropdown-menu>
               </el-dropdown>
             </el-col>
-            <!-- <el-col :span="8">
-                        <el-form-item>
-                            <el-button type="primary" @click="onSubmit">立即创建</el-button>
-                            <el-button>取消</el-button>
-                        </el-form-item>
-            </el-col>-->
           </el-row>
         </el-form>
       </div>
@@ -254,7 +260,19 @@ export default {
         this.StockApprotionPage(this.pageInfo.lastPage, 1);
       } else if (index == 5) {
         //添加
-        alert("5");
+         this.stockapportion=[];
+        this.stockapportion.push([
+        //用于对象增改操作
+        {
+          appid: "",
+          appdate: new date(),
+          wisname: "",
+          appamtmoney: 0.00,
+          makeperson: "",
+          auditingperson: "",
+          estate: 1
+        }
+      ])
       } else if (index == 6) {
         //修改
         console.log(JSON.stringify(this.stockapportion));
