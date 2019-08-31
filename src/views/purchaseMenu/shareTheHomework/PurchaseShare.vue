@@ -23,7 +23,7 @@
             </el-col>
             <el-col :span="8">
               <el-form-item label="单据号码" prop="appid">
-                <el-input size="small" v-model="i.appid" clearable></el-input>
+                <el-input size="small" :disabled="true" v-model="i.appid" clearable></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="10"></el-col>
@@ -46,10 +46,10 @@
               <el-form-item label="凭证编号">
                 <el-input size="small" v-model="i.appid" clearable></el-input>
               </el-form-item>
-            </el-col> -->
+            </el-col>-->
             <el-col :span="8">
               <el-form-item label="待摊金额本位币" prop="appamtmoney">
-                <el-input size="small" :disabled="true" v-model="i.appamtmoney"></el-input>
+                <el-input size="small" v-model="i.appamtmoney"></el-input>
               </el-form-item>
             </el-col>
           </el-row>
@@ -62,14 +62,14 @@
                   </span>
                   <template>
                     <el-table
-                      contenteditable="true"
                       :data="i.details"
                       height="250"
                       border
                       style="width: 100%"
                     >
-                      <el-table-column type="index" label="(栏号)"></el-table-column>
-                      <el-table-column class="colorText" prop="adeexesid" label="费用编号"></el-table-column>
+                      <!-- contenteditable="true" -->
+                      <el-table-column type="index" label="(栏号)" width="70"></el-table-column>
+                      <el-table-column prop="adeexesid" label="费用编号"></el-table-column>
                       <el-table-column prop="adeexesname" label="(费用名称)"></el-table-column>
                       <el-table-column prop="adcurrency" label="币别"></el-table-column>
                       <el-table-column prop="adstandardcurrency" label="汇率"></el-table-column>
@@ -81,7 +81,7 @@
                 <el-tab-pane label="分摊结果">
                   <template>
                     <el-table :data="i.result" height="250" border style="width: 100%">
-                      <el-table-column type="index" label="(栏号)"></el-table-column>
+                      <el-table-column type="index" label="(栏号)" width="70"></el-table-column>
                       <el-table-column prop="storageid" label="采购入库单号"></el-table-column>
                       <el-table-column prop="matid" label="物料编号"></el-table-column>
                       <el-table-column prop="matname" label="(物料名称)"></el-table-column>
@@ -110,7 +110,7 @@
           <el-row>
             <el-col :span="4">
               <!-- warning -->
-              <el-dropdown split-button >
+              <el-dropdown split-button>
                 功能
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item>载入来源</el-dropdown-item>
@@ -145,19 +145,47 @@ export default {
   data() {
     //这里存放数据
     return {
-      pageInfo: {},//集合渲染循环操作
-      stockapportion:{//用于对象增改操作
-            appid:"",
-            appdate :"",
-		        wisname :"",
-            appamtmoney :"",
-            makeperson :"",
-            auditingperson :"",
-            estate :"",
-            result :[],
-            details:[],
-      },
-      pickerOptions: {//针对于时间做的参数
+      pageInfo: {}, //集合渲染循环操作
+      stockapportion: [
+        //用于对象增改操作
+        {
+          appid: "",
+          appdate: "",
+          wisname: "",
+          appamtmoney: "",
+          makeperson: "",
+          auditingperson: "",
+          estate: "",
+          result: [
+            {
+              atiid: "",
+              atisequ: "",
+              storageid: "",
+              matid: "",
+              matname: "",
+              matspec: "",
+              stockprice: 0.0,
+              atinum: "",
+              ademoney: 0.0,
+              enables: ""
+            }
+          ],
+          details: [
+            {
+              adeid: "",
+              adesequ: "",
+              adeexesid: "",
+              adeexesname: "",
+              adeamtmoney: 0.0,
+              adcurrency: "",
+              adstandardcurrency: 1.0,
+              enables: ""
+            }
+          ]
+        }
+      ],
+      pickerOptions: {
+        //针对于时间做的参数
         shortcuts: [
           {
             text: "今天",
@@ -189,50 +217,39 @@ export default {
   computed: {},
   //监控data中的数据变化
   watch: {
-    '$route'(to, from) {
+    $route(to, from) {
       this.StockApprotionPage(1, 1);
     }
   },
   //方法集合
   methods: {
-    addList(){
-        if(this.isupdate)return ;
-        this.details.push({});
-    },
-    removeList(index){
-          if(this.isupdate)return ;
-        this.details.splice(index,1);
-    },
-    onSubmit() {
-      console.log("submit!");
-    },
     getStockOrder(index) {
       if (index == 1) {
         //第一页
-        if(this.pageInfo.isFirstPage){
-            this.$alert("已经是第一页了！","系统提示");
-            return;
+        if (this.pageInfo.isFirstPage) {
+          this.$alert("已经是第一页了！", "系统提示");
+          return;
         }
         this.StockApprotionPage(1, 1);
       } else if (index == 2) {
         //上一页
-        if(this.pageInfo.hasPreviousPage){
-            this.StockApprotionPage(this.pageInfo.prePage, 1);
-        }else{
-            this.$alert("暂无上一页","系统提示");
+        if (this.pageInfo.hasPreviousPage) {
+          this.StockApprotionPage(this.pageInfo.prePage, 1);
+        } else {
+          this.$alert("暂无上一页", "系统提示");
         }
       } else if (index == 3) {
         //下一页
-        if(this.pageInfo.hasNextPage){
-            this.StockApprotionPage(this.pageInfo.nextPage, 1);
-        }else {
-            this.$alert("暂无下一页","系统提示");
+        if (this.pageInfo.hasNextPage) {
+          this.StockApprotionPage(this.pageInfo.nextPage, 1);
+        } else {
+          this.$alert("暂无下一页", "系统提示");
         }
       } else if (index == 4) {
         //最后一页
-        if(this.pageInfo.isLastPage){
-            this.$alert("已经是最后一页了！","系统提示");
-            return;
+        if (this.pageInfo.isLastPage) {
+          this.$alert("已经是最后一页了！", "系统提示");
+          return;
         }
         this.StockApprotionPage(this.pageInfo.lastPage, 1);
       } else if (index == 5) {
@@ -240,13 +257,51 @@ export default {
         alert("5");
       } else if (index == 6) {
         //修改
-        alert("6");
+        console.log(JSON.stringify(this.stockapportion));
+        // return;
+        let _this = this;
+        this.$axios
+          .put(
+            `http://localhost:8080/api/apportions/apportion`,
+            _this.stockapportion
+          )
+          .then(resp => {
+            if (resp.data.code == "200") {
+              this.$message({
+                type: "success",
+                message: "修改成功"
+              });
+              _this.StockApprotionPage(this.pageInfo.pageNum, 1);
+            }
+          })
+          .catch(e => {
+            alert(e);
+          });
       } else if (index == 7) {
         //保存
         alert("保存");
       } else if (index == 8) {
         //删除
-        alert(this.pageInfo.list[0].appid);
+        let _this = this;
+        if (confirm("确定删除吗？")) {
+          this.$axios
+            .delete(
+              `http://localhost:8080/api/apportions/apportion/${this.stockapportion.appid}`
+            )
+            .then(resp => {
+              // console.log(JSON.stringify(resp));
+              if (resp.data.code == 200) {
+                this.$message({
+                  type: "success",
+                  message: "删除成功"
+                });
+                _this.StockApprotionPage(1, 1);
+              }
+            })
+            .catch(e => {
+              console.log(e);
+            });
+        }
       }
     },
     StockApprotionPage(p, s) {
@@ -263,7 +318,8 @@ export default {
           .get(`http://localhost:8080/api/apportions/apportion/${p}/${s}`)
           .then(resp => {
             _this.pageInfo = resp.data;
-            console.log("数据："+JSON.stringify(resp.data));
+            _this.stockapportion = resp.data.list[0];
+            console.log("数据：" + JSON.stringify(resp.data));
             loading.close(); //关闭加载块【非常重要】
           })
           .catch(e => {
