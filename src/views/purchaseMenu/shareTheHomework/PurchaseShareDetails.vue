@@ -1,5 +1,6 @@
 <template>
   <div class="PurchaseShare">
+    <commonHead></commonHead>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
         <span class="el-icon-star-on">采购分摊明细表单</span>
@@ -7,7 +8,7 @@
       <div style="padding: 0 20px; ">
         <el-form :inline="true" :model="tableData" class="demo-form-inline">
           <el-row>
-            <el-col :span="10">
+            <el-col :span="15">
               <el-form-item label="物料区间">
                 <el-input v-model="name" size="small"  placeholder="开始物料编号"></el-input>
               </el-form-item>
@@ -18,10 +19,9 @@
                 <el-button type="primary" size="small" ><router-link to="/setting">更多物料</router-link></el-button>
               </el-form-item>
             </el-col>
-            <el-col :span="12"></el-col>
           </el-row>
           <el-row>
-            <el-col :span="8">
+            <el-col :span="12">
               <el-form-item label="日期区间">
                   <el-date-picker v-model="value"  type="datetimerange"  :picker-options="pickerOptions" size="small" 
                     range-separator="至"  start-placeholder="开始日期"  end-placeholder="结束日期" align="right">
@@ -73,10 +73,13 @@
 //采购分摊明细表
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import commonHead from "../../../components/CommonHead.vue";
 
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: {
+    commonHead
+  },
   data() {
     //这里存放数据
     return {
@@ -129,13 +132,49 @@ export default {
     };
   },
   //监听属性 类似于data概念
-  computed: {},
+  computed: {
+    commonHead
+  },
   //监控data中的数据变化
   watch: {
     $route(to, from) {}
   },
   //方法集合
   methods: {
+    getStockOrder(index){
+        if(index == 1){
+          //第一页
+          alert("1")
+        }else if(index == 2){
+          //上一页
+          alert("2")
+
+        }else if(index == 3){
+          //下一页
+          alert("3")
+
+        }else if(index == 4){
+          //最后一页
+          alert("4")
+
+        }else if(index == 5){
+          //添加
+          alert("5")
+
+        }else if(index == 6){
+          //修改
+          alert("6")
+
+        }else if(index == 7){
+          //保存
+          alert("保7存")
+
+        }else if(index == 8){
+          //删除
+          alert("8")
+
+        }
+      }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
